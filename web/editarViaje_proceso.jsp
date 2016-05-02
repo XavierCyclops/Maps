@@ -10,6 +10,7 @@
     String fecha = request.getParameter("fecha");
     int cupo = Integer.parseInt(request.getParameter("cupo"));
     int precio = Integer.parseInt(request.getParameter("precio"));
+    int id = Integer.parseInt(request.getParameter("idViaje"));
     
     Ruta ruta = new Ruta();
     Usuario user = (Usuario) session.getAttribute("usuario");
@@ -17,10 +18,7 @@
     boolean estado = false;
 
     ruta.conecta();
-    int id = ruta.getMaximoId();
-    System.out.println("MAximo ID ruta: " + id);
-    id += 1;
-    estado = ruta.guardaRuta(id, destino, salida, fecha, horas + ":" + minutos, cupo, user.getIdusuario(), precio);
+    estado = ruta.actualizaRuta(id, destino, salida, fecha, horas + ":" + minutos, cupo, user.getIdusuario(), precio);
     ruta.desconecta();
 
     if (estado) {

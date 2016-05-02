@@ -131,6 +131,18 @@ public class Ruta {
         return b;
     }
     
+    public boolean actualizaRuta(int id, String destino, String salida, String fecha, String hora, 
+            int cupo, int idUsuario, int precio) {
+        
+        boolean b = false;
+        try {
+            b = conexionBD.actualizaRuta(id, destino, salida, fecha, hora, cupo, idUsuario, precio);
+        } catch (Exception ex) {
+            System.out.println("Error al registrar producto " + ex.getMessage());
+        }
+        return b;
+    }
+    
     public boolean elimina(int id) {
         boolean b = false;
         try {

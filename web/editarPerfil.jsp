@@ -49,6 +49,10 @@
         }
         $( document ).ready(function() {
             $('#msg').hide();
+            
+            $('#salir').click( function() {
+                    $('#submit-salir').click();
+            });
           });
     </script>
     </head>
@@ -80,7 +84,7 @@
                             <a class="page-scroll" href="administrarRuta.xhtml">Administrar Rutas</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="./salir.html">Salir</a>
+                            <a class="page-scroll" href="#" id="salir">Salir</a>
                         </li>
                     </ul>
                 </div>
@@ -92,10 +96,21 @@
         <header>
             <% 
                 Usuario user = (Usuario) session.getAttribute("usuario");
-                String nombre = user.getNombre();
-                String apellidos = user.getApellido();
-                String correo = user.getCorreo();
-                String password = user.getPassword();
+                String nombre = "";
+                String apellidos = "";
+                String correo = "";
+                String password = "";
+                if (user != null) {
+                    nombre = user.getNombre();
+                    apellidos = user.getApellido();
+                    correo = user.getCorreo();
+                    password = user.getPassword();
+                } else {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("location='entrar.jsp';");
+                    out.println("</script>");
+                }
+                
             %>
             <div class="container">
 		<div class="col1">
@@ -125,6 +140,16 @@
                     </form>
                 </div>
                 
+            </div>
+                        
+            <div style="display:none;">  
+                
+                <form method="POST" action="salir_proceso.jsp">
+                  <fieldset>
+                    <input id="submit-salir" type="submit" tabindex="-1" style="display:none;">
+                  </fieldset>
+                    
+                </form>
             </div>
         </header>
     </body>

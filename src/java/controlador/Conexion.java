@@ -141,6 +141,23 @@ public class Conexion {
         return b;
     }
     
+    public boolean actualizaRuta(int id, String destino, String salida, String fecha, String hora, 
+            int cupo, int idUsuario, int precio) {
+        
+         boolean b = false;
+        try {
+            stmt = con.createStatement();
+            stmt.executeUpdate("update ruta \n" +
+                                "set destino='"+destino+"', fecha='"+fecha+"', hora='"+hora+"', cupo="+cupo+", salida='"+salida+"', precio="+precio+"\n" +
+                                "where idruta="+id+"");
+            b = true;
+        } catch(Exception ex){
+            System.out.println("SQLException!!!: " + ex.getMessage());
+        }
+        return b;
+       
+    }
+    
     public boolean guardaRuta(int id, String destino, String salida, String fecha, String hora, 
             int cupo, int idUsuario, int precio) {
         
@@ -162,7 +179,12 @@ public class Conexion {
         try {
             stmt = con.createStatement();
             stmt.executeUpdate("delete from usuario\n" +
-                                    "where idusuario ="+id+" ");
+                                    "where idusuario ="+id+"");
+            stmt.executeUpdate("delete from viaje\n" +
+                                    "where idruta = (select idruta from ruta where idusuario = "+id+")");
+            stmt.executeUpdate("delete from ruta\n" +
+                                    "where idusuario ="+id+"");
+             
             b = true;
         } catch(Exception ex){
             System.out.println("SQLException!!!: " + ex.getMessage());

@@ -38,7 +38,7 @@
                     buttons: {
                         "Crear": function() {
                             //$(this).dialog("close");
-                            $('#submit-viaje').click();
+                            $('#submit').click();
                         },
                         Cancel: function() {
                             $(this).dialog("close");
@@ -199,8 +199,7 @@
                 <form method="POST" action="salir_proceso.jsp">
                   <fieldset>
                     <input id="submit-salir" type="submit" tabindex="-1" style="display:none;">
-                  </fieldset>
-                    
+                  </fieldset> 
                 </form>
               </div>
             

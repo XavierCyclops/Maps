@@ -23,5 +23,3 @@
         out.println("</script>");
     }
 %>
-
-<a href="index.html">Volver a Inicio</a>

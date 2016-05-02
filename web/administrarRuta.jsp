@@ -42,9 +42,9 @@
                     height: 540,
                     modal: true,
                     buttons: {
-                        "Crear": function() {
+                        "Actualizar": function() {
                             //$(this).dialog("close");
-                            $('#submit-viaje').click();
+                            $('#submit').click();
                         },
                         Cancel: function() {
                             $(this).dialog("close");
@@ -66,7 +66,7 @@
                     buttons: {
                         "Tomar Viaje": function() {
                             //$(this).dialog("close");
-                            $('#submit-viaje').click();
+                            $('#submit').click();
                         },
                         Cancel: function() {
                             $(this).dialog("close");
@@ -78,6 +78,11 @@
                 
                 $('#salir').click( function() {
                     $('#submit-salir').click();
+                });
+                
+                $('#editar').click( function (e) {
+                    e.preventDefault();
+                    $('#dialog-form').dialog('open');
                 });
             });
         </script>
@@ -149,7 +154,7 @@
                         <h4>Metro C.U - Neza</h4>
                         <h4>2 asientos disponibles</h4>
                         <input type="submit" value="Eliminar Viaje" class="eliminar">
-                        <button>Editar Viaje</button>
+                        <button id="editar" >Editar Viaje</button>
                     </div>
 
                     <div class="col4">
@@ -162,7 +167,7 @@
             <div id="dialog-form" title="Publica Viaje">
                 <p class="validateTips">Todos los campos son requeridos</p>
 
-                <form method="POST" action="publicaViaje_proceso.jsp">
+                <form method="POST" action="editarViaje_proceso.jsp">
                   <fieldset>
                     <label for="destino">Destino</label>
                     <input type="text" name="destino" id="destino" >
@@ -178,9 +183,9 @@
                     <input type="text" name="cupo" id="cupo"  style="width: 50px"> <br>
                     <label for="precio">Precio por asiento ($)</label>
                     <input type="text" name="precio" id="precio"  style="width: 50px">
-
+                    <input id="idViaje" name="idViaje" type="text"  value="1" style="display:none;">
                     <!-- Allow form submission with keyboard without duplicating the dialog button -->
-                    <input id="submit" type="submit" tabindex="-1" value="LOL" style="display:none;">
+                    <input  type="submit" id="submit" value="Test" >
                   </fieldset>
                     
                 </form>
