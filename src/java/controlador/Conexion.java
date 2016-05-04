@@ -34,7 +34,7 @@ public class Conexion {
         String dir = "jdbc:postgresql://localhost:5432/RideCiencias";
         //String dir = "jdbc:oracle:thin:@localhost:5432:RideCiencias";
         String user = "postgres";
-        String password = "Rene8523";
+        String password = "Moonknight27";
         try{
             Class.forName(driver);
             con = DriverManager.getConnection(dir, user, password);

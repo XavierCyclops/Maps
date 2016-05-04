@@ -86,6 +86,53 @@
                 });
             });
         </script>
+        <script
+    src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <!Mapa comun>
+    <script>
+        var map;
+        function initialize() {
+            var mapOptions = {
+                zoom: 10,
+                center: new google.maps.LatLng(19.323100, -99.179867)
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+        
+           var marker = new google.maps.Marker({
+            position: center,
+             map: map,
+            title: 'Ruta'
+  });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+            </script>
+    <script>
+        var mapa;
+        function initialize() {
+            var mapOptions = {
+                zoom: 10,
+                center: new google.maps.LatLng(19.323100, -99.179867)
+            };
+            mapa = new google.maps.Map(document.getElementById('mapCreacion'),
+            mapOptions);
+        
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+            </script>
+                <script>
+        var m;
+        function initialize() {
+            var mapOptions = {
+                zoom: 10,
+                center: new google.maps.LatLng(19.323100, -99.179867)
+            };
+            m = new google.maps.Map(document.getElementById('mapConfirma'),
+            mapOptions);
+        
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+            </script>
         <style>
             .ui-dialog .ui-dialog-buttonpane { 
                 text-align: center;
@@ -131,7 +178,7 @@
                             <a class="page-scroll" href="editarPerfil.jsp"> Editar Perfil </a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="administrarRuta.xhtml"> Administrar Rutas </a>
+                            <a class="page-scroll" href="administrarRuta.jsp"> Administrar Rutas </a>
                         </li>
                         <li>
                             <a class="page-scroll" href="#" id="salir"> Salir </a>
@@ -147,7 +194,7 @@
             <form onsubmit="return ask();" action="eliminaViaje_proceso.jsp">
                 <div class="container">
                     <div class="col3">
-                        <img src="resources/img/map.jpg" alt="" style="height: 160px; width: 220px;">
+                        <div id="map-canvas" style="height:160px; width:220px"></div>
                     </div>
                     <div class="col2">
                         <h3>13:00 quedan 2 hrs.</h3>
@@ -173,7 +220,7 @@
                     <input type="text" name="destino" id="destino" >
                     <label for="salida">Salida</label>
                     <input type="text" name="salida" id="salida" ><br><br>
-                    <img src="resources/img/map.jpg" alt="" style="height: 200px; width: 400px;"> <br><br>
+                    <div   id="mapCreacion" style="height:200px; width:400px"></div>
                     <label for="horas minutos">Hora</label>
                     <input type="text" name="horas" id="horas" style="width: 50px">:
                     <input type="text" name="minutos" id="minutos"  style="width: 50px"><br>
@@ -193,8 +240,7 @@
             
             <div id="viaje-aceptar" title="Tomar este viaje">
                 <p class="validateTips">¿Quieres tomar este viaje?</p> <br>
-                <img src="resources/img/map.jpg" alt="" style="height: 300px;">
-                
+                <div id="mapConfirma" style="height:400px; width:600px"></div>
                 <form method="POST" action="aceptaViaje_proceso.jsp">
                   <fieldset>
                     <input id="showId" type="hidden"  name="viajeId">
