@@ -32,7 +32,6 @@ public class Conexion {
     public void conectar() throws Exception{
         String driver = "org.postgresql.Driver";
         String dir = "jdbc:postgresql://localhost:5432/RideCiencias";
-        //String dir = "jdbc:oracle:thin:@localhost:5432:RideCiencias";
         String user = "postgres";
         String password = "Moonknight27";
         try{
@@ -120,6 +119,9 @@ public class Conexion {
             stmt = con.createStatement();
             stmt.executeUpdate("insert into viaje (idruta, idusuario)\n" +
                                 "values("+idRuta+", "+idUsuario+")");
+            stmt.executeUpdate("UPDATE ruta/n" +
+                                    "SET cupo = cupo + 1"+"WHERE idusuario ="+idUsuario+"");
+
             b = true;
         } catch(Exception ex){
             System.out.println("SQLException!!!: " + ex.getMessage());
@@ -184,6 +186,8 @@ public class Conexion {
                                     "where idruta = (select idruta from ruta where idusuario = "+id+")");
             stmt.executeUpdate("delete from ruta\n" +
                                     "where idusuario ="+id+"");
+            stmt.executeUpdate("UPDATE ruta/n" +
+                                    "SET cupo = cupo - 1"+"WHERE idusuario ="+id+"");
              
             b = true;
         } catch(Exception ex){

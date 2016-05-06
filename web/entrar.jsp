@@ -41,7 +41,7 @@
                 <input type="text" name="correo" required/> <br>
                 <label for="password">Contraseña </label> 
                 <input id="pass1" type="password" name="password" required/> <br>
-                <span id="msg"><p>Nooooope</p></span><br>
+                <span id="msg"><p>Favor de verrificar tus datos.</p></span><br>
                 
                 
                 <input type="submit" value="Entrar"/>
