@@ -184,8 +184,6 @@ public class Conexion {
                                     "where idusuario ="+id+"");
             stmt.executeUpdate("delete from viaje\n" +
                                     "where idruta = (select idruta from ruta where idusuario = "+id+")");
-            stmt.executeUpdate("delete from ruta\n" +
-                                    "where idusuario ="+id+"");
             stmt.executeUpdate("UPDATE ruta/n" +
                                     "SET cupo = cupo - 1"+"WHERE idusuario ="+id+"");
              
