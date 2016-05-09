@@ -71,6 +71,24 @@ public class Conexion {
             return usuarios;
         } 
         
+        
+        public ArrayList getViajes() throws Exception {
+            ArrayList viajes = new ArrayList();
+            try{
+                stmt = con.createStatement();
+                rs = stmt.executeQuery("select idusuario, idruta from viaje");
+                while(rs.next()){
+                    Viaje p = new Viaje();
+                    p.setIdusuario(rs.getInt(1));
+                    p.setIdruta(rs.getInt(2));
+                    viajes.add(p);
+                }
+            } catch(Exception ex) {
+                System.out.println("SQLException!! desde conexion: " + ex.getMessage());
+            }
+            return viajes;
+        }
+        
     /*public ArrayList getRutas() throws Exception {
         ArrayList rutas = new ArrayList();
         try{
@@ -143,6 +161,21 @@ public class Conexion {
         return b;
     }
     
+    public boolean actualizaViaje(int idusuario, int idRuta) {
+         boolean b = false;
+        try {
+            stmt = con.createStatement();
+            stmt.executeUpdate("update viaje \n" +
+                                "set idusuario='"+idusuario+"', idruta="+idRuta+"\n" +
+                                "where idusuario="+idusuario+"");
+            b = true;
+        } catch(Exception ex){
+            System.out.println("SQLException!!!: " + ex.getMessage());
+        }
+        return b;
+       
+    }
+    
     public boolean actualizaRuta(int id, String destino, String salida, String fecha, String hora, 
             int cupo, int idUsuario, int precio) {
         
@@ -206,6 +239,19 @@ public class Conexion {
             stmt.executeUpdate("delete from ruta\n" +
                                     "where idruta ="+id+" ");
             
+            b = true;
+        } catch(Exception ex){
+            System.out.println("SQLException!!!: " + ex.getMessage());
+        }
+        return b;
+    }
+    
+        public boolean eliminaViaje(int id) {
+        boolean b = false;
+        try {
+            stmt = con.createStatement();
+            stmt.executeUpdate("delete from viaje\n" +
+                                    "where idusuario ="+id+" ");
             b = true;
         } catch(Exception ex){
             System.out.println("SQLException!!!: " + ex.getMessage());
