@@ -37,6 +37,16 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String password;
+    private String perfil;
+
+
+    public String getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
+    }
     
     public Usuario() {
     }
@@ -92,20 +102,20 @@ public class Usuario {
         return l;
     }
     
-    public boolean guarda(int id, String nombre, String apellido, String correo, String password) {
+    public boolean guarda(int id, String nombre, String apellido, String correo, String password, String perfil) {
         boolean b = false;
         try {
-            b = conexionBD.guardaUsuario(id, nombre, apellido, correo, password);
+            b = conexionBD.guardaUsuario(id, nombre, apellido, correo, password,perfil);
         } catch (Exception ex) {
             System.out.println("Error al registrar producto " + ex.getMessage());
         }
         return b;
     }
     
-    public boolean actualiza(int id, String nombre, String apellido, String correo, String password) {
+    public boolean actualiza(int id, String nombre, String apellido, String correo, String password, String perfil) {
         boolean b = false;
         try {
-            b = conexionBD.actualizaUsuario(id, nombre, apellido, correo, password);
+            b = conexionBD.actualizaUsuario(id, nombre, apellido, correo, password, perfil);
         } catch (Exception ex) {
             System.out.println("Error al registrar producto " + ex.getMessage());
         }
@@ -115,6 +125,7 @@ public class Usuario {
         this.apellido = apellido;
         this.correo = correo;
         this.password = password;
+        this.perfil = perfil;
         
         return b;
         

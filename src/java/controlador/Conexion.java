@@ -55,7 +55,7 @@ public class Conexion {
             ArrayList usuarios = new ArrayList();
             try{
                 stmt = con.createStatement();
-                rs = stmt.executeQuery("select idusuario, correo, nombre, apellido, passwrd from usuario");
+                rs = stmt.executeQuery("select idusuario, correo, nombre, apellido,passwrd,perfil from usuario");
                 while(rs.next()){
                     Usuario p = new Usuario();
                     p.setIdusuario(rs.getInt(1));
@@ -63,6 +63,7 @@ public class Conexion {
                     p.setNombre(rs.getString(3));
                     p.setApellido(rs.getString(4));
                     p.setPassword(rs.getString(5));
+                    p.setPerfil(rs.getString(6));
                     usuarios.add(p);
                 }
             } catch(Exception ex) {
@@ -115,13 +116,13 @@ public class Conexion {
     *
     */       
     public boolean guardaUsuario(int id, String nombre, String apellido, String correo, 
-            String passwrd) throws Exception {
+            String passwrd,String perfil) throws Exception {
         
         boolean b = false;
         try {
             stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO usuario (idusuario, correo, nombre, apellido, passwrd)"
-                    + "VALUES (" + id +",'" + correo + "', '" + nombre + "' , '" + apellido + "','" + passwrd + "')");
+            stmt.executeUpdate("INSERT INTO usuario (idusuario, correo, nombre, apellido, passwrd, perfil)"
+                    + "VALUES (" + id +",'" + correo + "', '" + nombre + "' , '" + apellido + "','" + passwrd +"','"+perfil+ "')");
             b = true;
         } catch(Exception ex){
             System.out.println("SQLException!!!: " + ex.getMessage());
@@ -147,12 +148,12 @@ public class Conexion {
         return b;
     }
     
-    public boolean actualizaUsuario(int id, String nombre, String apellido, String correo, String password) {
+    public boolean actualizaUsuario(int id, String nombre, String apellido, String correo, String password, String perfil) {
         boolean b = false;
         try {
             stmt = con.createStatement();
             stmt.executeUpdate("update usuario\n" +
-                                "set correo = '"+correo+"', nombre='"+nombre+"', apellido = '"+apellido+"', passwrd = '"+password+"'\n" +
+                                "set correo = '"+correo+"', nombre='"+nombre+"', apellido = '"+apellido+"', passwrd = '"+password+"',perfil='"+perfil+"'\n" +
                                 "where idusuario = "+id+" ");
             b = true;
         } catch(Exception ex){

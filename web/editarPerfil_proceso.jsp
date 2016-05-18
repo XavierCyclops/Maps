@@ -5,13 +5,14 @@
     String apellidos = request.getParameter("apellidos");
     String correo = request.getParameter("correo");
     String password = request.getParameter("password");
+    String perfil = request.getParameter("perfil");
     //int id = Integer.parseInt(request.getParameter("id_max"));
     Usuario user = (Usuario) session.getAttribute("usuario");
     
     boolean estado = false;
 
     user.conecta();
-    estado = user.actualiza(user.getIdusuario(), nombre, apellidos, correo, password);
+    estado = user.actualiza(user.getIdusuario(), nombre, apellidos, correo, password,perfil);
     user.desconecta();
     
     

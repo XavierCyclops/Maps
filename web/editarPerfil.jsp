@@ -42,6 +42,7 @@
              else
                  return true;
         };
+
         
         function ask() {
             var res = confirm("Estas seguro de eliminar???");
@@ -100,11 +101,13 @@
                 String apellidos = "";
                 String correo = "";
                 String password = "";
+                String perfil = "";
                 if (user != null) {
                     nombre = user.getNombre();
                     apellidos = user.getApellido();
                     correo = user.getCorreo();
                     password = user.getPassword();
+                    perfil = user.getPerfil();
                 } else {
                     out.println("<script type=\"text/javascript\">");
                     out.println("location='entrar.jsp';");
@@ -113,12 +116,13 @@
                 
             %>
             <div class="container">
-		<div class="col1">
-			<img src="resources/img/default_user.png" style="height: 160px; width: 150px;">
-                        <img src="resources/img/5-stars-icon.png" alt="" style="height: 15px; width: 80px;">
-		</div>
                 <div class="col2" >
                     <form action="editarPerfil_proceso.jsp" method="post" onSubmit="return checkForm()">
+                        <img src="resources/img/<%= perfil%>" style="height: 160px; width: 150px;">
+                        <img src="resources/img/5-stars-icon.png" alt="" style="height: 15px; width: 80px;">
+                        <form action="Uploader.php" method="post" enctype="multipart/form-data">
+                            <input type="file" name="<%= perfil%>" >
+                        </form>
                         <label for="nombre">Nombre </label> 
                         <input type="text" name="nombre" value="<%= nombre%>" required/> <br>
                         <label for="apellidos">Apellidos </label> 
